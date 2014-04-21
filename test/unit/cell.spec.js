@@ -39,7 +39,20 @@ describe('gol service', function() {
     });
     
     var getNeighbors = function(cell) {
-        return [];
+        var row = cell.row;
+        var col = cell.col;
+        var neighbors = [
+            {'row':row - 1, 'col':col},
+            {'row':row - 1, 'col':col + 1},
+            {'row':row, 'col':col + 1},
+            {'row':row + 1, 'col':col + 1},
+            {'row':row + 1, 'col':col},
+            {'row':row + 1, 'col':col - 1},
+            {'row':row, 'col':col - 1},
+            {'row':row - 1, 'col':col -1}
+        ];
+        
+        return neighbors;
     };    
     
     var livingNeighbors = function(cell) {
