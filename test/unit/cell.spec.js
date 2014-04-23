@@ -6,14 +6,57 @@ describe('gol service', function() {
     var cell_1_1 = {'row':1, 'col':1};
     var cell_2_1 = {'row':2, 'col':1};
     var cell_2_3 = {'row':2, 'col':3};
-    var cell_3_3 = {'row':3, 'col':3}; 
-
-    // TODO initGrid()
+    var cell_3_3 = {'row':3, 'col':3};
+    
+    var emptyGrid = [[0,0,0],[0,0,0],[0,0,0]];
 
     beforeEach(function() {
         grid = [[0, 0, 1],
                 [0, 1, 1],
                 [0, 1, 1]];
+    });
+
+    var initGrid = function(rows, cols, defaultValue) {
+        var arr = [];
+        for (var i = 0; i < rows; i++) {
+           arr.push([]);
+           arr[i].push(new Array(cols));
+           for (var j = 0; j < cols; j++) {
+               arr[i][j] = defaultValue;
+           }
+        }
+        return arr;
+    };
+    
+    var seedGrid = function(grid, phrase) {
+		for (var i = 0; i < rows; i++) {
+			
+			
+		}
+		
+		
+		for (var x = 0; x < phrase.length; x++) {
+			var c = phrase.charAt(x);
+			
+		}
+	};
+    
+    describe('seedGrid', function() {
+		var filledGrid = [[0, 1, 0],
+                          [0, 1, 0],
+                          [0, 1, 0]];
+		var phrase = 'ferretfun';
+		it('should animate vowel positions', function() {
+			expect(seedGrid(emptyGrid, phrase)).toEqual(filledGrid);
+		});
+	});
+
+    
+    describe('initGrid', function() {
+        it('should create an empty matrix', function() {
+            expect(initGrid(3, 3, 0)).toEqual(emptyGrid);
+
+        });
     });
     
     var isAlive = function(cell) {
