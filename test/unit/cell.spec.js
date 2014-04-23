@@ -8,12 +8,15 @@ describe('gol service', function() {
     var cell_2_3 = {'row':2, 'col':3};
     var cell_3_3 = {'row':3, 'col':3};
     
-    var emptyGrid = [[0,0,0],[0,0,0],[0,0,0]];
+    var emptyGrid;
 
     beforeEach(function() {
-        grid = [[0, 0, 1],
-                [0, 1, 1],
-                [0, 1, 1]];
+      grid = [[0, 0, 1],
+              [0, 1, 1],
+              [0, 1, 1]];
+      emptyGrid = [[0,0,0],
+                  [0,0,0],
+                  [0,0,0]];
     });
 
     var initGrid = function(rows, cols, defaultValue) {
@@ -29,27 +32,37 @@ describe('gol service', function() {
     };
     
     var seedGrid = function(grid, phrase) {
-		for (var i = 0; i < rows; i++) {
-			
-			
-		}
-		
-		
-		for (var x = 0; x < phrase.length; x++) {
-			var c = phrase.charAt(x);
-			
-		}
-	};
+      var phraseIndex = 0;
+      var vowels = 'aeiouy';
+      var filledGrid = grid.slice(0);
+
+      for (var r = 0; r < grid.length; r++) {
+        for (var c = 0; c < grid.length; c++) {
+          var currLetter = phrase.charAt(phraseIndex);
+          if (vowels.indexOf(currLetter) > -1){
+            filledGrid[r][c] = 1;
+          }
+          if (phraseIndex < phrase.length - 1) {
+            phraseIndex++;
+          }
+          else {
+            phraseIndex = 0;
+          }
+        }
+      }
+      console.log(grid + ' ' + filledGrid);
+      return filledGrid;
+    };
     
     describe('seedGrid', function() {
-		var filledGrid = [[0, 1, 0],
+        var filledGrid = [[0, 1, 0],
                           [0, 1, 0],
                           [0, 1, 0]];
-		var phrase = 'ferretfun';
-		it('should animate vowel positions', function() {
-			expect(seedGrid(emptyGrid, phrase)).toEqual(filledGrid);
-		});
-	});
+        var phrase = 'ferretfun';
+        it('should animate vowel positions', function() {
+            expect(seedGrid(emptyGrid, phrase)).toEqual(filledGrid);
+        });
+    });
 
     
     describe('initGrid', function() {
